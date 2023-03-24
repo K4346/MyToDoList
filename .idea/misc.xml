@@ -4,11 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/android_projects/MyToDoList/app/src/main/res/drawable/delete-48px.xml" value="0.18" />
+        <entry key="..\:/android_projects/MyToDoList/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.1545" />
         <entry key="..\:/android_projects/MyToDoList/app/src/main/res/drawable/ic_launcher_background.xml" value="0.18" />
         <entry key="..\:/android_projects/MyToDoList/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
         <entry key="..\:/android_projects/MyToDoList/app/src/main/res/layout/content_main.xml" value="0.22826086956521738" />
+        <entry key="..\:/android_projects/MyToDoList/app/src/main/res/layout/fragment_add_to_do.xml" value="0.22826086956521738" />
+        <entry key="..\:/android_projects/MyToDoList/app/src/main/res/layout/fragment_detail_to_do.xml" value="0.22826086956521738" />
         <entry key="..\:/android_projects/MyToDoList/app/src/main/res/layout/fragment_first.xml" value="0.22826086956521738" />
+        <entry key="..\:/android_projects/MyToDoList/app/src/main/res/layout/fragment_second.xml" value="0.22826086956521738" />
         <entry key="..\:/android_projects/MyToDoList/app/src/main/res/layout/to_do_item.xml" value="0.22826086956521738" />
+        <entry key="..\:/android_projects/MyToDoList/app/src/main/res/menu/menu_main.xml" value="0.14479166666666668" />
       </map>
     </option>
   </component>

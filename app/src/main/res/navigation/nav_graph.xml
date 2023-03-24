@@ -14,15 +14,26 @@
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
+        <action
+            android:id="@+id/action_FirstFragment_to_addToDoFragment"
+            app:destination="@id/addToDoFragment" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
         android:name="com.executor.mytodolist.SecondFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        tools:layout="@layout/fragment_detail_to_do">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addToDoFragment"
+        android:name="com.executor.mytodolist.AddToDoFragment"
+        android:label="@string/add_To_Do" >
+        <action
+            android:id="@+id/action_addToDoFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
 </navigation>
