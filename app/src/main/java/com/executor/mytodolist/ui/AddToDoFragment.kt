@@ -1,10 +1,13 @@
-package com.executor.mytodolist
+package com.executor.mytodolist.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.executor.mytodolist.data.entities.ToDoEntity
+import com.executor.mytodolist.data.entities.ToDoPriority
 import com.executor.mytodolist.databinding.FragmentDetailToDoBinding
 import com.google.android.material.snackbar.Snackbar
 import java.text.SimpleDateFormat
@@ -16,7 +19,10 @@ class AddToDoFragment : Fragment() {
 
     private val binding get() = _binding!!
 
-    private val date = Calendar.getInstance().time
+    lateinit var viewModel: MainViewModel
+
+    @SuppressLint("SimpleDateFormat")
+    private val date = SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().time)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,13 +35,14 @@ class AddToDoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel = (activity as MainActivity).viewModel
         initView()
         setOnClickListeners()
     }
 
 
     private fun initView() {
-        binding.tvDate.text = SimpleDateFormat("dd-MM-yyyy").format(date)
+        binding.tvDate.text = date
     }
 
     private fun setOnClickListeners() {
@@ -44,7 +51,7 @@ class AddToDoFragment : Fragment() {
                 Snackbar.make(it, "Введите название", Snackbar.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            ToDoData.toDoList.add(
+            viewModel.insert(
                 ToDoEntity(
                     binding.tvName.text.toString(),
                     binding.tvDescription.text.toString(),
@@ -57,7 +64,7 @@ class AddToDoFragment : Fragment() {
                         }
                     },
                     false,
-                    date
+                    date.toString()
                 )
             )
             requireActivity().onBackPressed()

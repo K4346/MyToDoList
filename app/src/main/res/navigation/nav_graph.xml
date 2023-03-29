@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.executor.mytodolist.FirstFragment"
+        android:name="com.executor.mytodolist.ui.ToDoListFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first">
 
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.executor.mytodolist.SecondFragment"
+        android:name="com.executor.mytodolist.ui.DetailFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_detail_to_do">
 
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/addToDoFragment"
-        android:name="com.executor.mytodolist.AddToDoFragment"
+        android:name="com.executor.mytodolist.ui.AddToDoFragment"
         android:label="@string/add_To_Do" >
         <action
             android:id="@+id/action_addToDoFragment_to_FirstFragment"

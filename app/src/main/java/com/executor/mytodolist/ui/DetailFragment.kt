@@ -1,30 +1,31 @@
-package com.executor.mytodolist
+package com.executor.mytodolist.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.executor.mytodolist.data.entities.ToDoEntity
+import com.executor.mytodolist.data.entities.ToDoPriority
 import com.executor.mytodolist.databinding.FragmentDetailToDoBinding
 import com.google.android.material.snackbar.Snackbar
-import java.text.SimpleDateFormat
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
-class SecondFragment : Fragment() {
+class DetailFragment : Fragment() {
 
     private var _binding: FragmentDetailToDoBinding? = null
 
     private val binding get() = _binding!!
+
+    private lateinit var viewModel: MainViewModel
 
     lateinit var toDoItem: ToDoEntity
     private var index: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        index = arguments?.getInt(TO_DO_INDEX) ?: 0
-        toDoItem = ToDoData.toDoList[index]
 
     }
 
@@ -38,6 +39,9 @@ class SecondFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel = (activity as MainActivity).viewModel
+        index = arguments?.getInt(TO_DO_INDEX) ?: 0
+        toDoItem = viewModel.todoList[index]
         initView()
         setOnClickListeners()
     }
@@ -52,7 +56,7 @@ class SecondFragment : Fragment() {
                 ToDoPriority.Low -> 2
             }
         )
-        binding.tvDate.text = SimpleDateFormat("dd-MM-yyyy").format(toDoItem.date)
+        binding.tvDate.text = toDoItem.date
     }
 
     private fun setOnClickListeners() {
@@ -61,9 +65,11 @@ class SecondFragment : Fragment() {
                 Snackbar.make(it, "Введите название", Snackbar.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            ToDoData.toDoList[index].name = binding.tvName.text.toString()
-            ToDoData.toDoList[index].description = binding.tvDescription.text.toString()
-            ToDoData.toDoList[index].priority =
+
+            val currentObject = viewModel.todoList[index]
+            currentObject.name = binding.tvName.text.toString()
+            currentObject.description = binding.tvDescription.text.toString()
+            currentObject.priority =
                 when (binding.spinnerPriority.selectedItemPosition) {
                     0 -> ToDoPriority.High
                     1 -> ToDoPriority.Mid
@@ -72,6 +78,7 @@ class SecondFragment : Fragment() {
                         ToDoPriority.Low
                     }
                 }
+            viewModel.update(currentObject, index)
             requireActivity().onBackPressed()
         }
     }
